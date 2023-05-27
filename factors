@@ -1,19 +1,25 @@
-#!/usr/bin/python3
 import sys
 
-if len(sys.argv) != 2:
-    print("Bad Usage\n/.factors filename")
-else:
 
-    file_name = sys.argv[1]
-    file_of_number = open(file_name)
-    number = file_of_number.readline()
+def factorize(num):
+    factors = []
+    for i in range(2, int(num ** 0.5) + 1):
+        if num % i == 0:
+            factors.append((i, num // i))
+    return factors
 
-    while number != "\n" and number != "":
-        number = int(number)
-        divisor = 2
-        while number % divisor != 0:
-            divisor += 1
-        d_r = int(number / divisor)
-        print(f"{number}={d_r}*{divisor}")
-        number = file_of_number.readline()
+
+def main():
+    filename = sys.argv[1]
+    with open(filename, 'r') as file:
+        numbers = [int(line.strip()) for line in file]
+
+    for num in numbers:
+        factor_pairs = factorize(num)
+        for factor_pair in factor_pairs:
+            p, q = factor_pair
+            print(f"{num}={p}*{q}")
+
+
+if __name__ == "__main__":
+    main()
