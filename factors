@@ -1,32 +1,19 @@
 #!/usr/bin/python3
-# library to get arguments
 import sys
 
+if len(sys.argv) != 2:
+    print("Bad Usage\n/.factors filename")
+else:
 
-# fn unpack number factorial
-def fc():
-    """
-    function fc to search file to convert number and format n=p*q
-    """
-    try:
-        revfile = sys.argv[1]
-        with open(revfile) as f:
-            for revnumber in f:
-                revnumber = int(revnumber)
-                if revnumber % 2 == 0:
-                        print("{}={}*{}".format(revnumber, revnumber // 2, 2))
-                        continue
-                i = 3
-                while i < revnumber // 2:
-                    if revnumber % i == 0:
-                        print("{}={}*{}".format(revnumber, revnumber // i, i))
-                        break
-                    i = i + 2
-                if i == (revnumber // 2) + 1:
-                    print("{}={}*{}".format(revnumber, revnumber, 1))
-    except (IndexError):
-        pass
+    file_name = sys.argv[1]
+    file_of_number = open(file_name)
+    number = file_of_number.readline()
 
-
-# autostart
-fc()
+    while number != "\n" and number != "":
+        number = int(number)
+        divisor = 2
+        while number % divisor != 0:
+            divisor += 1
+        d_r = int(number / divisor)
+        print(f"{number}={d_r}*{divisor}")
+        number = file_of_number.readline()
