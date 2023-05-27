@@ -1,11 +1,13 @@
 #!/usr/bin/python3
-"""Module that factorize as many numbers as possible
- into a product of two smaller numbers."""
+
+"""Module that factorizes as many numbers as possible
+into a product of two smaller numbers."""
+
 from sys import argv
 
 
 def factorize(value):
-    """"print a simple descomposition of an integer > 1"""
+    """Prints a simple decomposition of an integer > 1"""
     i = 2
 
     if value < 2:
@@ -13,6 +15,7 @@ def factorize(value):
     while value % i:
         i += 1
     print("{:.0f}={:.0f}*{:.0f}".format(value, value / i, i))
+
 
 if len(argv) != 2:
     exit()
@@ -22,8 +25,8 @@ try:
         line = file.readline()
 
         while line != "":
-            value = int(line.split('\n')[0])
+            value = int(line.rstrip('\n'))
             factorize(value)
             line = file.readline()
-except:
+except IOError:
     pass
