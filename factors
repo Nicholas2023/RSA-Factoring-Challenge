@@ -1,14 +1,17 @@
 #!/usr/bin/python3
 
 import sys
+import math
 
 
 def factorize(num):
     """Factorize a number into a product of two smaller numbers"""
-    for i in range(2, num):
+    if num % 2 == 0:
+        return ("{}=2*{}".format(num, num // 2))
+    for i in range(3, int(math.sqrt(num)) + 1, 2):
         if num % i == 0:
-            return f"{num}={i}*{num//i}"
-    return f"{num} is prime"
+            return ("{}={}*{}".fomart(num, i, num // i))
+    return ("{} is prime".format(num))
 
 
 if len(sys.argv) != 2:
@@ -29,5 +32,5 @@ except FileNotFoundError:
     print("File '{}' not found".format(filename))
     sys.exit(1)
 except ValueError:
-    print("Invalid input in '{filename}'".format(filename))
+    print("Invalid input in '{}'".format(filename))
     sys.exit(1)
